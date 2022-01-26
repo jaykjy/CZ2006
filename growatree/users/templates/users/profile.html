@@ -1,0 +1,96 @@
+{% extends "recyclinghistory/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div>
+        <h2 class="account-heading">My Profile</h2>
+        <img class="img-fluid" src="{{ user.profile.image.url }}" />
+        <p style="margin-top: 23px; font-size: 23px; margin-bottom: 2px">
+          {{ user.username }}
+        </p>
+        <p class="text-sceondary">{{ user.email }}</p>
+        <a
+          class="btn btn-primary btn-block text-center"
+          role="button"
+          style="
+            text-align: left;
+            font-size: 16px;
+            padding-right: 100px;
+            background: rgb(162, 162, 162);
+          "
+          >My Profile</a
+        >
+        <a
+          class="btn btn-primary btn-block text-center"
+          role="button"
+          style="
+            text-align: left;
+            font-size: 16px;
+            padding-right: 50px;
+            background: rgb(6, 126, 195);
+          "
+          href="{% url 'recycling-history' %}"
+          >Recycling History</a
+        >
+
+        <a
+          class="btn btn-primary btn-block text-center"
+          role="button"
+          style="
+            text-align: left;
+            font-size: 16px;
+            padding-right: 80px;
+            background: rgb(6, 126, 195);
+            margin-bottom: 30px;
+          "
+          href="{% url 'tree-interface' %}"
+          >View Legend</a
+        >
+      </div>
+    </div>
+    <div class="col-sm-9">
+        <!--Insert the tree progress display here-->
+        {% if image == 1 %}
+        <img class="img-fluid" src="{% static 'img/tree1.PNG' %}" />
+        {% elif image == 5 %}
+        <img class="img-fluid" src="{% static 'img/tree5.PNG' %}" />
+        {% elif image == 10 %}
+        <img class="img-fluid" src="{% static 'img/tree10.PNG' %}" />
+        {% elif image == 15 %}
+        <img class="img-fluid" src="{% static 'img/tree15.PNG' %}" />
+        {% elif image == 25 %}
+        <img class="img-fluid" src="{% static 'img/tree25.PNG' %}" />
+        {% elif image == 50 %}
+        <img class="img-fluid" src="{% static 'img/tree50.PNG' %}" />
+        {% elif image == 75 %}
+        <img class="img-fluid" src="{% static 'img/tree75.PNG' %}" />
+        {% elif image == 90 %}
+        <img class="img-fluid" src="{% static 'img/tree90.PNG' %}" />
+        {% elif image == 100 %}
+        <img class="img-fluid" src="{% static 'img/tree100.PNG' %}" />
+        {% elif image == 110 %}
+        <img class="img-fluid" src="{% static 'img/tree110.PNG' %}" />
+        {% elif image == 125 %}
+        <img class="img-fluid" src="{% static 'img/tree125.PNG' %}" />
+        {% elif image == 150 %}
+        <img class="img-fluid" src="{% static 'img/tree150.PNG' %}" />
+        {% else %}
+        <p>Start recycling to grow a tree!</p>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+<div>
+  <p style="margin-top: 23px; font-size: 23px; margin-bottom: 2px">
+    Estimated Number of Trees Saved: {{ tree }}
+  </p>
+</div>
+
+{% endblock content %}

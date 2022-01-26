@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'database/main.css'%}"
+    />
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Grow A Tree</title>
+    {% endif %}
+  </head>
+
+  <body>
+    <div id="content" name="content" class="main">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <div class="container" id="biglogo">
+            <div class="card" style="border-width: 0px">
+              <img
+                class="card-img-top w-100 d-block"
+                src="{% static 'img/growatree%20HD.jpg' %}"
+              />
+            </div>
+          </div>
+          <hr class="mt-0 mb-4" />
+        </div>
+      </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="container" style="padding-bottom: 20px">
+      <div class="row">
+        <div class="col-sm-11">
+          <div>
+            <a class="btn btn-primary" href="{% url 'map' %}" role="button"
+              >< Back to Map</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <div>
+            <a class="btn btn-primary" href="{% url 'logout' %}" role="button"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="container" style="padding-bottom: 20px">
+      <div class="row">
+        <div class="col-sm-3">
+          <div>
+            <a class="btn btn-primary" href="{% url 'Login' %}" role="button"
+              >Login</a
+            >
+            <a class="btn btn-primary" href="{% url 'register' %}" role="button"
+              >Register</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <div></div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

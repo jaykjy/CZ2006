@@ -1,0 +1,105 @@
+{% extends "recyclinghistory/base.html" %}
+
+{% block content %}
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <title>Profile - Recycling History</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div>
+            <h2 class="account-heading">Recycling History</h2>
+            <img class="img-fluid" src="{{ user.profile.image.url }}" />
+            <p style="margin-top: 23px; font-size: 23px; margin-bottom: 2px">
+              {{ user.username }}
+            </p>
+            <p class="text-sceondary">{{ user.email }}</p>
+
+            <a
+              class="btn btn-primary btn-block text-center"
+              role="button"
+              style="
+                text-align: left;
+                font-size: 16px;
+                padding-right: 100px;
+                background: rgb(6, 126, 195);
+              "
+              href="{% url 'profile' %}"
+              >My Profile</a
+            >
+
+            <a
+              class="btn btn-primary btn-block text-center"
+              role="button"
+              style="
+                text-align: left;
+                font-size: 16px;
+                padding-bottom: 0px;
+                padding-right: 50px;
+                background: rgb(162, 162, 162);
+              "
+              >Recycling History</a
+            >
+
+            <a
+              class="btn btn-primary btn-block text-center"
+              role="button"
+              style="
+                text-align: left;
+                font-size: 16px;
+                padding-right: 80px;
+                margin-bottom: 100px;
+                background: rgb(6, 126, 195);
+              "
+              href="{% url 'tree-interface' %}"
+              >View Legend</a
+            >
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <table
+            class="table table-success table-striped table-bordered border-secondary" 
+            style="margin-top: 50px"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Location</th>
+                <th scope="col">Recycling Type</th>
+                <th scope="col">Recycling Weight</th>
+              </tr>
+            </thead>
+            {% for info in database_info %}
+            <tbody>
+              <tr>
+                <td>{{ info.date }}</td>
+                <td>{{ info.location }}</td>
+                <td>{{ info.recyclingType }}</td>
+                <td>{{ info.recyclingWeight }}</td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+
+      <script src="js/bootstrap.bundle.min.js"></script>
+
+      {% endblock content %}
+    </div>
+  </body>
+</html>

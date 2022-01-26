@@ -1,0 +1,91 @@
+﻿{% extends "recyclinghistory/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Grow A Tree
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>recycling app test</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/untitled.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div>
+            <h2 class="account-heading">View Legend</h2>
+            <img class="img-fluid" src="{{ user.profile.image.url }}" />
+            <p style="margin-top: 23px; font-size: 23px; margin-bottom: 2px">
+              {{ user.username }}
+            </p>
+            <p class="text-sceondary">{{ user.email }}</p>
+
+            <a
+              class="btn btn-primary btn-block text-center"
+              role="button"
+              style="
+                text-align: left;
+                font-size: 16px;
+                padding-right: 107px;
+                background: rgb(6, 126, 195);
+              "
+              href="{% url 'profile' %}"
+              >View Profile</a
+            >
+
+            <a
+              class="btn btn-primary btn-block text-center"
+              role="button"
+              style="
+                text-align: left;
+                font-size: 16px;
+                padding-right: 69px;
+                background: rgb(6, 126, 195);
+              "
+              href="{% url 'recycling-history' %}"
+              >Recycling History</a
+            >
+
+            <a
+              class="btn btn-primary btn-block text-center"
+              role="button"
+              style="
+                text-align: left;
+                font-size: 16px;
+                padding-right: 100px;
+                background: rgb(162, 162, 162);
+                margin-bottom: 300px;
+              "
+              >View Legend</a
+            >
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <div class="card" style="border-width: 0px">
+            <img
+              class="card-img-top w-100 d-block"
+              src="{% static 'img/viewlegend.PNG' %}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock content %}
